@@ -13,7 +13,7 @@ spec:
         app: porocila
     spec:
       containers:
-        - image: stobiskovalcev/porocila:latest
+        - image: gj1421/porocila:latest
           name: porocila
           ports:
             - containerPort: 8081
