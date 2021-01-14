@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: porocila-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: porocila
+  template:
+    metadata:
+      labels:
+        app: porocila
+    spec:
+      containers:
+        - image: stobiskovalcev/porocila:latest
+          name: porocila
+          ports:
+            - containerPort: 8081
+              name: server
+              protocol: TCP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: porocila
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8081
+      protocol: TCP
+      targetPort: server
+  selector:
+    app: porocila
